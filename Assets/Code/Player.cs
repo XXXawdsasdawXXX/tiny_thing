@@ -8,7 +8,8 @@ namespace Code
         [Networked] private TickTimer _delay { get; set; }
         
         [SerializeField] private Ball _prefabBall;
-        
+        [SerializeField] private PhysxBall _prefabPhysxBall;
+
         private NetworkCharacterController _characterController;
         
         private Vector3 _forward;
@@ -41,18 +42,29 @@ namespace Code
         {
             if (HasStateAuthority && _delay.ExpiredOrNotRunning(Runner))
             {
-                _delay = TickTimer.CreateFromSeconds(Runner, 0.5f);
-
                 if (data.buttons.IsSet(NetworkInputData.MOUSEBUTTON0))
                 {
-                    Vector3 spawnPosition = transform.position + _forward;
-
+                    _delay = TickTimer.CreateFromSeconds(Runner, 0.5f);
+                    
                     Runner.Spawn(
                         _prefabBall,
-                        spawnPosition,
+                        transform.position + _forward,
                         Quaternion.LookRotation(_forward),
                         Object.InputAuthority,
                         (runner, networkObject) => { networkObject.GetComponent<Ball>().Initialize(); });
+                }
+                else if (data.buttons.IsSet(NetworkInputData.MOUSEBUTTON1))
+                {
+                    _delay = TickTimer.CreateFromSeconds(Runner, 0.5f);
+                 
+                    Runner.Spawn(_prefabPhysxBall,
+                        transform.position + _forward,
+                        Quaternion.LookRotation(_forward),
+                        Object.InputAuthority,
+                        (runner, networkObject) =>
+                        {
+                            networkObject.GetComponent<PhysxBall>().Init( 10*_forward );
+                        });
                 }
             }
         }

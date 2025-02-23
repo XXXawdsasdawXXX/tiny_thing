@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Fusion;
+using Fusion.Addons.Physics;
 using Fusion.Sockets;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,6 +15,40 @@ namespace Code
         private readonly Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new();
 
         private NetworkRunner _runner;
+
+        private bool _mouseButton0;
+        private bool _mouseButton1;
+        
+        private void Update()
+        {
+            _mouseButton0 |= Input.GetMouseButton(0);
+            _mouseButton1 |= Input.GetMouseButton(1);
+        }
+
+        public void OnInput(NetworkRunner runner, NetworkInput input)
+        {
+            var data = new NetworkInputData();
+
+            if (Input.GetKey(KeyCode.W))
+                data.direction += Vector3.forward;
+
+            if (Input.GetKey(KeyCode.S))
+                data.direction += Vector3.back;
+
+            if (Input.GetKey(KeyCode.A))
+                data.direction += Vector3.left;
+
+            if (Input.GetKey(KeyCode.D))
+                data.direction += Vector3.right;
+
+            data.buttons.Set(NetworkInputData.MOUSEBUTTON0, _mouseButton0);
+            _mouseButton0 = false;
+           
+            data.buttons.Set(NetworkInputData.MOUSEBUTTON1, _mouseButton1);
+            _mouseButton1 = false;
+
+            input.Set(data);
+        }
 
         public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
         {
@@ -40,35 +75,7 @@ namespace Code
                 _spawnedCharacters.Remove(player);
             }
         }
-
-        private bool _mouseButton0;
-        private void Update()
-        {
-            _mouseButton0 |= Input.GetMouseButton(0);
-        }
-
-        public void OnInput(NetworkRunner runner, NetworkInput input)
-        {
-            var data = new NetworkInputData();
-
-            if (Input.GetKey(KeyCode.W))
-                data.direction += Vector3.forward;
-
-            if (Input.GetKey(KeyCode.S))
-                data.direction += Vector3.back;
-
-            if (Input.GetKey(KeyCode.A))
-                data.direction += Vector3.left;
-
-            if (Input.GetKey(KeyCode.D))
-                data.direction += Vector3.right;
-
-            data.buttons.Set( NetworkInputData.MOUSEBUTTON0, _mouseButton0);
-            _mouseButton0 = false;
-
-            input.Set(data);
-        }
-
+        
         public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input)
         {
             Debug.LogWarning($"Input missing for player {player.PlayerId}.");
@@ -174,6 +181,9 @@ namespace Code
                 SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
             });
 
+            
+            gameObject.AddComponent<RunnerSimulatePhysics3D>();
+            
             Debug.Log($"Start game {mode}");
         }
 
