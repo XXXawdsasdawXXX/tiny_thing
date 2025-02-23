@@ -1,7 +1,7 @@
 using Fusion;
 using UnityEngine;
 
-namespace Code
+namespace Code.Game
 {
     public class PhysxBall : NetworkBehaviour
     {

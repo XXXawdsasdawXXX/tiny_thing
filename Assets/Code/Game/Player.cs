@@ -1,7 +1,8 @@
-﻿using Fusion;
+﻿using Code.Core;
+using Fusion;
 using UnityEngine;
 
-namespace Code
+namespace Code.Game
 {
     public class Player : NetworkBehaviour
     {

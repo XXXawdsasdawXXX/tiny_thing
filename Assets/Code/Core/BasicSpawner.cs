@@ -6,7 +6,7 @@ using Fusion.Sockets;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Code
+namespace Code.Core
 {
     public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     {

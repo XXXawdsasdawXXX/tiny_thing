@@ -1,8 +1,7 @@
-﻿using System;
-using Fusion;
+﻿using Fusion;
 using UnityEngine;
 
-namespace Code
+namespace Code.Game
 {
     public class Ball : NetworkBehaviour
     {
