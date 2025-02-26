@@ -177,9 +177,6 @@ namespace Code.Core
                 SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
             });
 
-            
-            gameObject.AddComponent<RunnerSimulatePhysics2D>();
-            
             Debug.Log($"Start game {mode}");
         }
 
