@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Fusion;
 using Fusion.Addons.Physics;
 using Fusion.Sockets;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,7 @@ namespace Code.Core
     public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     {
         [SerializeField] private NetworkPrefabRef _playerPrefab;
+        [SerializeField] private NetworkPrefabRef _heroPrefab;
         
         private readonly Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new();
 
@@ -27,19 +29,11 @@ namespace Code.Core
 
         public void OnInput(NetworkRunner runner, NetworkInput input)
         {
-            var data = new NetworkInputData();
+            NetworkInputData data = new();
 
-            if (Input.GetKey(KeyCode.W))
-                data.direction += Vector3.forward;
-
-            if (Input.GetKey(KeyCode.S))
-                data.direction += Vector3.back;
-
-            if (Input.GetKey(KeyCode.A))
-                data.direction += Vector3.left;
-
-            if (Input.GetKey(KeyCode.D))
-                data.direction += Vector3.right;
+            /*float x  =*/
+            
+            data.direction = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
 
             data.buttons.Set(NetworkInputData.MOUSEBUTTON0, _mouseButton0);
             _mouseButton0 = false;
@@ -47,6 +41,8 @@ namespace Code.Core
             data.buttons.Set(NetworkInputData.MOUSEBUTTON1, _mouseButton1);
             _mouseButton1 = false;
 
+           
+            
             input.Set(data);
         }
 
@@ -58,7 +54,7 @@ namespace Code.Core
             {
                 Vector3 spawnPosition = new(player.RawEncoded % runner.Config.Simulation.PlayerCount * 3, 1, 0);
             
-                NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player);
+                NetworkObject networkPlayerObject = runner.Spawn(_heroPrefab, spawnPosition, Quaternion.identity, player);
                 
                 _spawnedCharacters.Add(player, networkPlayerObject);
             }
@@ -182,7 +178,7 @@ namespace Code.Core
             });
 
             
-            gameObject.AddComponent<RunnerSimulatePhysics3D>();
+            gameObject.AddComponent<RunnerSimulatePhysics2D>();
             
             Debug.Log($"Start game {mode}");
         }

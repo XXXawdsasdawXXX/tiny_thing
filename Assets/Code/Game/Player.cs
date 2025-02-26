@@ -26,14 +26,14 @@ namespace Code.Game
         {
             if (GetInput(out NetworkInputData data))
             {
-                data.direction.Normalize();
+                /*data.direction.Normalize();
                 
                 _characterController.Move(5 * data.direction * Runner.DeltaTime);
 
                 if (data.direction.sqrMagnitude > 0)
                 {
                     _forward = data.direction;
-                }
+                }*/ 
 
                 TrySpawnBall(data);
             }

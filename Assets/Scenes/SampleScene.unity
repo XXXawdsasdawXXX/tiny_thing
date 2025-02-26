@@ -247,6 +247,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerPrefab:
     RawGuidValue: 4754e1429139b3e4faebcd6117ba6040
+  _heroPrefab:
+    RawGuidValue: b172ce2ad6bf2424c8037febea98a108
 --- !u!4 &776737481
 Transform:
   m_ObjectHideFlags: 0
@@ -372,7 +374,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &2059025888
 MeshCollider:
   m_ObjectHideFlags: 0
