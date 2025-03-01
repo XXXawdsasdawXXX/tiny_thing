@@ -31,8 +31,7 @@ namespace Code.Game
         [ServerRpc]
         private void ChangeColorServer(Color color)
         {
-            _spriteRenderer.color = color;
-            //ChangeColorObserver(color);
+            ChangeColorObserver(color);
         }
     }
 }
