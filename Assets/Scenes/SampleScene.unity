@@ -787,7 +787,6 @@ GameObject:
   - component: {fileID: 1139785395}
   - component: {fileID: 7443408886943866779}
   - component: {fileID: 7443408886943866781}
-  - component: {fileID: 7443408886943866780}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -847,26 +846,6 @@ MonoBehaviour:
   - {fileID: 1333603077}
   - {fileID: 1705355499}
   - {fileID: 978013466}
---- !u!114 &7443408886943866780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7443408886943866772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f48f002b825cbd45a19bd96d90f9edb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dontRoute: 0
-  _unreliableMtu: 1023
-  _ipv4BindAddress: 
-  _enableIpv6: 1
-  _ipv6BindAddress: 
-  _port: 7770
-  _maximumClients: 4095
-  _clientAddress: localhost
 --- !u!114 &7443408886943866781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -880,6 +859,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _connectionType: 1
+  _serverIP: 192.168.1.100
+  _port: 7777
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
