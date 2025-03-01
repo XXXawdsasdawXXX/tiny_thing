@@ -75,7 +75,7 @@ namespace Code.Core.Network
             }
         }
 
-        private static string GetLocalIPAddress()
+        public static string GetLocalIPAddress()
         {
             string localIP = "127.0.0.1"; 
             

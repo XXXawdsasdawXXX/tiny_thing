@@ -1,3 +1,4 @@
+using System;
 using Code.Core.Network;
 using UnityEngine;
 
@@ -6,6 +7,12 @@ namespace Code.UI.Windows.Connection
     public class ConnectionWindowController : UIWindowController<ConnectionWindowView>
     {
         [SerializeField] private ConnectionHandler _connectionHandler;
+
+        private void Awake()
+        {
+            view.TextUserIP.SetText("your ip: " + ConnectionHandler.GetLocalIPAddress());
+            view.Open();
+        }
 
         protected override void SubscribeToEvents(bool flag)
         {
