@@ -18,20 +18,21 @@ namespace Code.Game
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                ChangeColorServer(null, Color.red);
+                ChangeColorServer(Color.red);
             }
         }
 
         [ObserversRpc]
-        private void ChangeColorObserver(GameObject hero, Color color)
+        private void ChangeColorObserver(Color color)
         {
             _spriteRenderer.color = color;
         }
 
         [ServerRpc]
-        private void ChangeColorServer(GameObject hero, Color color)
+        private void ChangeColorServer(Color color)
         {
-            ChangeColorObserver(hero, color);
+            _spriteRenderer.color = color;
+            //ChangeColorObserver(color);
         }
     }
 }
