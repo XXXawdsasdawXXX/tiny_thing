@@ -1,30 +1,22 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using FishNet;
 using FishNet.Transporting;
 using FishNet.Transporting.Tugboat;
 using UnityEngine;
 
-namespace Code.Core
+namespace Code.Core.Network
 {
-    public enum EConnectionType
-    {
-        None,
-        Host,
-        Client
-    }
-    
     public class ConnectionHandler : MonoBehaviour
     {
         [SerializeField] private EConnectionType _connectionType;
-        [SerializeField] private string _serverIP = "192.168.1.100"; // Ввести IP сервера вручную
+        [SerializeField] private string _serverIP = "192.168.1.100";
         [SerializeField] private ushort _port = 7777;
         private void OnEnable()
         {
             InstanceFinder.ClientManager.OnClientConnectionState += OnClientConnectionState;
         }
 
-        private void Start()
+        /*private void Start()
         {
 #if UNITY_EDITOR
             if (ParrelSync.ClonesManager.IsClone())
@@ -39,18 +31,17 @@ namespace Code.Core
                 }
                 else if (_connectionType == EConnectionType.Client)
                 {
-                    ConnectAsClient();
+                    ConnectAsClient(_serverIP);
                 }
             }
 #endif
-        }
+        }*/
 
-        private void ConnectAsClient()
+        public void ConnectAsClient(string serverIP)
         {
-            // Получаем TugboatTransport (или другой транспорт)
             if (InstanceFinder.NetworkManager.TransportManager.Transport is Tugboat tugboat)
             {
-                tugboat.SetClientAddress(_serverIP);
+                tugboat.SetClientAddress(serverIP);
                 tugboat.SetPort(_port);
             }
 
@@ -58,12 +49,13 @@ namespace Code.Core
             Debug.Log($"[Client] Подключение к серверу {_serverIP}:{_port}");
         }
 
-        private void StartHost()
+        public void StartHost()
         {
             if (InstanceFinder.NetworkManager.TransportManager.Transport is Tugboat tugboat)
             {
                 tugboat.SetClientAddress(GetLocalIPAddress());
                 tugboat.SetPort(_port);
+                Debug.Log($"[Host] set local ip {GetLocalIPAddress()}:{_port}");
             }
 
             InstanceFinder.ServerManager.StartConnection();
@@ -82,11 +74,12 @@ namespace Code.Core
                 UnityEditor.EditorApplication.isPlaying = false;
             }
         }
-        
-        public static string GetLocalIPAddress()
+
+        private static string GetLocalIPAddress()
         {
-            string localIP = "127.0.0.1"; // По умолчанию
-            foreach (var ip in System.Net.Dns.GetHostAddresses(System.Net.Dns.GetHostName()))
+            string localIP = "127.0.0.1"; 
+            
+            foreach (IPAddress ip in Dns.GetHostAddresses(Dns.GetHostName()))
             {
                 if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
                 {
@@ -94,27 +87,8 @@ namespace Code.Core
                     break;
                 }
             }
+            
             return localIP;
-        }
-    }
-    
-    public class NetworkUtils : MonoBehaviour
-    {
-        public static string GetLocalIPAddress()
-        {
-            foreach (IPAddress ip in Dns.GetHostAddresses(Dns.GetHostName()))
-            {
-                if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-                {
-                    return ip.ToString(); // Возвращаем локальный IP
-                }
-            }
-            return "127.0.0.1"; // Если не найден IP
-        }
-
-        private void Start()
-        {
-            Debug.Log($"[Server] Локальный IP: {GetLocalIPAddress()}");
         }
     }
 }
