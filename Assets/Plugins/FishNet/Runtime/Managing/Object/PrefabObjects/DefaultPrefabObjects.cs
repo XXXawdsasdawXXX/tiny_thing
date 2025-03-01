@@ -98,8 +98,5 @@ namespace FishNet.Managing.Object
             base.Clear();
             base.AddObjects(sortedNobs, checkForDuplicates: false, initializeAdded: false);
         }
-
-
     }
-
 }
