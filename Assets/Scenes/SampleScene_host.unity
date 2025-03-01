@@ -555,7 +555,6 @@ GameObject:
   - component: {fileID: 837811206}
   - component: {fileID: 837811205}
   - component: {fileID: 837811204}
-  - component: {fileID: 837811207}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -665,33 +664,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1557836634}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &837811207
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 837811203}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &877077170
 GameObject:
   m_ObjectHideFlags: 0
@@ -934,7 +906,6 @@ GameObject:
   - component: {fileID: 1320329796}
   - component: {fileID: 1320329795}
   - component: {fileID: 1320329794}
-  - component: {fileID: 1320329798}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Untagged
@@ -1057,27 +1028,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1557836634}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1320329798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1320329793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be3cb2952c351714c963b0766f53cef3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 255
-  _addedNetworkObject: {fileID: 1557836635}
-  _networkObjectCache: {fileID: 0}
-  _maximumSimultaneousHits: 16
-  _historyDuration: 0.5
-  _additionalSize: 42.2
-  _layers:
-    serializedVersion: 2
-    m_Bits: 1
 --- !u!1 &1333603076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,7 +1070,6 @@ GameObject:
   - component: {fileID: 1376816814}
   - component: {fileID: 1376816813}
   - component: {fileID: 1376816812}
-  - component: {fileID: 1376816816}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -1240,27 +1189,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1557836634}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1376816816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376816811}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be3cb2952c351714c963b0766f53cef3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 255
-  _addedNetworkObject: {fileID: 1557836635}
-  _networkObjectCache: {fileID: 0}
-  _maximumSimultaneousHits: 16
-  _historyDuration: 0.5
-  _additionalSize: 42.2
-  _layers:
-    serializedVersion: 2
-    m_Bits: 1
 --- !u!1 &1557836633
 GameObject:
   m_ObjectHideFlags: 0

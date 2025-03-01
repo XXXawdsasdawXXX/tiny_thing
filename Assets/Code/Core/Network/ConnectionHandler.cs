@@ -46,6 +46,7 @@ namespace Code.Core.Network
             }
 
             InstanceFinder.ClientManager.StartConnection();
+     
             Debug.Log($"[Client] Подключение к серверу {_serverIP}:{_port}");
         }
 
@@ -60,6 +61,7 @@ namespace Code.Core.Network
 
             InstanceFinder.ServerManager.StartConnection();
             InstanceFinder.ClientManager.StartConnection();
+      
             Debug.Log($"[Host] Сервер запущен на {GetLocalIPAddress()}:{_port}");
         }
         private void OnDisable()
