@@ -8,6 +8,7 @@ namespace Code.Core.Network
 {
     public class ConnectionHandler : MonoBehaviour
     {
+        public string LastJoinedIP => _serverIP;
         [SerializeField] private EConnectionType _connectionType;
         [SerializeField] private string _serverIP = "192.168.1.100";
         [SerializeField] private ushort _port = 7777;
