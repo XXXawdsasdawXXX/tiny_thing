@@ -429,6 +429,7 @@ GameObject:
   - component: {fileID: 328750980}
   - component: {fileID: 328750979}
   - component: {fileID: 328750978}
+  - component: {fileID: 328750983}
   m_Layer: 0
   m_Name: NetworkManager_host
   m_TagString: Untagged
@@ -519,6 +520,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &328750983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328750977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fdaae44044276a49a52229c1597e33b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateOrder: 0
+  _timingType: 1
+  _allowTickDropping: 1
+  _maximumFrameTicks: 3
+  _tickRate: 30
+  _pingInterval: 1
+  _physicsMode: 1
 --- !u!224 &504173750 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4925974049403073049, guid: 735af693806aee5479cb96ac29073d3d, type: 3}
@@ -535,7 +555,7 @@ GameObject:
   - component: {fileID: 837811206}
   - component: {fileID: 837811205}
   - component: {fileID: 837811204}
-  - component: {fileID: 837811208}
+  - component: {fileID: 837811207}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -577,7 +597,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.58
 --- !u!212 &837811205
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -645,27 +665,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1557836634}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &837811208
-MonoBehaviour:
+--- !u!50 &837811207
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837811203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be3cb2952c351714c963b0766f53cef3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 255
-  _addedNetworkObject: {fileID: 1557836635}
-  _networkObjectCache: {fileID: 0}
-  _maximumSimultaneousHits: 16
-  _historyDuration: 0.5
-  _additionalSize: 42.2
-  _layers:
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &877077170
 GameObject:
   m_ObjectHideFlags: 0

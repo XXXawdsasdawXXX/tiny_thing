@@ -98,7 +98,8 @@ GameObject:
   - component: {fileID: 7074728272879338317}
   - component: {fileID: 6778264612898636302}
   - component: {fileID: -5377052078767239473}
-  - component: {fileID: 4378808039802650654}
+  - component: {fileID: 2934239996263089593}
+  - component: {fileID: 3246878644520225141}
   m_Layer: 0
   m_Name: hero
   m_TagString: Untagged
@@ -141,6 +142,7 @@ MonoBehaviour:
   NetworkBehaviours:
   - {fileID: 7987240356325076128}
   - {fileID: 6778264612898636302}
+  - {fileID: 3246878644520225141}
   InitializedParentNetworkBehaviour: {fileID: 0}
   InitializedNestedNetworkObjects: []
   RuntimeParentNetworkBehaviour: {fileID: 0}
@@ -225,14 +227,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5483374850134618058}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -243,7 +245,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &6778264612898636302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,7 +262,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 8329376548906989968}
   _networkObjectCache: {fileID: 8329376548906989968}
   _rigidbody2D: {fileID: 7074728272879338317}
-  _moveSpeed: 5
+  _moveSpeed: 100
   _cameraYOffset: -1
 --- !u!70 &-5377052078767239473
 CapsuleCollider2D:
@@ -297,7 +299,22 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.5}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
---- !u!114 &4378808039802650654
+--- !u!114 &2934239996263089593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5483374850134618058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71fd7f855ec523429999fc4e14a1928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _overrideType: 3
+  _updateHostVisibility: 1
+  _observerConditions: []
+--- !u!114 &3246878644520225141
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -309,12 +326,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be3cb2952c351714c963b0766f53cef3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 2
   _addedNetworkObject: {fileID: 8329376548906989968}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 8329376548906989968}
   _maximumSimultaneousHits: 16
   _historyDuration: 0.5
   _additionalSize: 0.1
   _layers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295

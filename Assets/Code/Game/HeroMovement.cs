@@ -7,7 +7,8 @@ namespace Code.Game
     {
         [SerializeField] private Rigidbody2D _rigidbody2D;
         [SerializeField] private float _moveSpeed = 5f;
-        [SerializeField] private float _cameraYOffset = -1;
+        [SerializeField] private float _cameraYOffset = 4;
+      
         private Vector2 _inputDirection;
         private Camera _camera;
 
@@ -34,28 +35,22 @@ namespace Code.Game
 
         private void Update()
         {
-            if (!IsOwner) return; // Только локальный игрок получает ввод
+            if (!IsOwner)
+            {
+                return;
+            }
 
             _inputDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         }
 
         private void FixedUpdate()
         {
-            if (!IsOwner) return;
-
-            if (_inputDirection != Vector2.zero)
+            if (!IsOwner)
             {
-                SendMovementToServer(_inputDirection);
+                return;
             }
-        }
-
-        //[ServerRpc(RequireOwnership = false)]
-        private void SendMovementToServer(Vector2 direction)
-        {
-            if (_rigidbody2D != null)
-            {
-                _rigidbody2D.MovePosition(_rigidbody2D.position + direction.normalized * _moveSpeed * Time.fixedDeltaTime);
-            }
+       
+            _rigidbody2D.velocity = _inputDirection.normalized * _moveSpeed * (float)TimeManager.TickDelta;
         }
     }
 }
