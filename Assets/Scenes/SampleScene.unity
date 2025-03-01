@@ -858,8 +858,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b6c5a3d31e74e6590a57547742c30c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _connectionType: 1
-  _serverIP: 192.168.1.100
+  _connectionType: 2
+  _serverIP: 192.168.1.69
   _port: 7777
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

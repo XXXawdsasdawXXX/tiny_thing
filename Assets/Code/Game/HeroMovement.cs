@@ -14,18 +14,18 @@ namespace Code.Game
         public override void OnStartClient()
         {
             base.OnStartClient();
-       
+
             if (IsOwner)
             {
                 _camera = Camera.main;
-                
+
                 if (_camera != null)
                 {
                     Transform cameraTransform = _camera.transform;
                     Transform playerTransform = transform;
-                    
+
                     Vector3 cameraPosition = playerTransform.position + new Vector3(0, _cameraYOffset, -10);
-                    
+
                     cameraTransform.SetParent(playerTransform);
                     cameraTransform.position = cameraPosition;
                 }
@@ -34,23 +34,27 @@ namespace Code.Game
 
         private void Update()
         {
-            if (!IsOwner) return; // Только локальный игрок обрабатывает ввод
+            if (!IsOwner) return; // Только локальный игрок получает ввод
 
             _inputDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-            
+        }
+
+        private void FixedUpdate()
+        {
+            if (!IsOwner) return;
+
             if (_inputDirection != Vector2.zero)
             {
                 SendMovementToServer(_inputDirection);
             }
         }
 
-        [ServerRpc(RequireOwnership = false)]
+        //[ServerRpc(RequireOwnership = false)]
         private void SendMovementToServer(Vector2 direction)
         {
             if (_rigidbody2D != null)
             {
-                Vector2 newPosition = _rigidbody2D.position + direction.normalized * _moveSpeed * Time.fixedDeltaTime;
-                _rigidbody2D.MovePosition(newPosition);
+                _rigidbody2D.MovePosition(_rigidbody2D.position + direction.normalized * _moveSpeed * Time.fixedDeltaTime);
             }
         }
     }
