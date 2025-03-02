@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 2934239996263089593}
   - component: {fileID: 3634067845205420892}
   - component: {fileID: -1088813167707792737}
+  - component: {fileID: -227475778803773201}
   m_Layer: 0
   m_Name: hero
   m_TagString: Untagged
@@ -348,5 +349,21 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 8329376548906989968}
   _networkObjectCache: {fileID: 8329376548906989968}
   _itemPrefab: {fileID: 8821076372296327611, guid: d3718bd0e5c846d4380ef5e8ed1070b8, type: 3}
-  _itemInstance: {fileID: 0}
+  _itemInstances: []
   _count: 0
+--- !u!114 &-227475778803773201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5483374850134618058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c2fefa7c64f489f8f3eda4b1d94f09b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 8329376548906989968}
+  _networkObjectCache: {fileID: 0}
+  _itemSpawner: {fileID: -1088813167707792737}
