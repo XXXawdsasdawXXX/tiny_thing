@@ -59,7 +59,6 @@ namespace FishNet.Editing
         private static void Initialize()
         {
             SubscribeToUpdate();
-            LogFeedbackLink();
         }
 
         private static void SubscribeToUpdate()
@@ -162,17 +161,7 @@ namespace FishNet.Editing
             backgroundTexture.Apply();
             return backgroundTexture;
         }
-
-        private static void LogFeedbackLink()
-        {
-            //Only log the link when editor opens.
-            if (Time.realtimeSinceStartup < 10f)
-            {
-                string msg = @"Thank you for using Fish-Networking! If you have any feedback—whether it's suggestions, documentation, or performance-related—please let us know through our anonymous <a href=https://forms.gle/1g13VY4KKMnEqpkp6>Google feedback form!</a>";
-                Debug.Log(msg);
-            }
-            
-        }
+        
     }
 
 }
