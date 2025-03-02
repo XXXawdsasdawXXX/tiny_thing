@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7351738057785227669}
   - component: {fileID: 3638304691655895053}
-  - component: {fileID: 8713193681178082148}
   - component: {fileID: 8821076372296327611}
   - component: {fileID: 4776378443941551050}
   m_Layer: 0
@@ -71,7 +70,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
---- !u!114 &8713193681178082148
+--- !u!114 &8821076372296327611
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -80,15 +79,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2467146911340589197}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 0305f30995794b1587fdc2f846c2e9c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <IsNested>k__BackingField: 0
   <ComponentIndex>k__BackingField: 0
   <PredictedSpawn>k__BackingField: {fileID: 0}
   <PredictedOwner>k__BackingField: {fileID: 0}
-  NetworkBehaviours:
-  - {fileID: 4776378443941551050}
+  NetworkBehaviours: []
   InitializedParentNetworkBehaviour: {fileID: 0}
   InitializedNestedNetworkObjects: []
   RuntimeParentNetworkBehaviour: {fileID: 0}
@@ -98,7 +96,7 @@ MonoBehaviour:
   _isGlobal: 0
   _initializeOrder: 0
   _preventDespawnOnDisconnect: 0
-  _defaultDespawnType: 0
+  _defaultDespawnType: 1
   NetworkObserver: {fileID: 0}
   _enablePrediction: 0
   _predictionType: 0
@@ -113,27 +111,15 @@ MonoBehaviour:
   _spectatorInterpolation: 2
   _enableTeleport: 0
   _teleportThreshold: 1
-  <PrefabId>k__BackingField: 3
+  <PrefabId>k__BackingField: 65535
   <SpawnableCollectionId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 4733550159754654229
   <SceneId>k__BackingField: 0
   SerializedTransformProperties:
     Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0, w: 1}
-    Scale: {x: 1, y: 1, z: 1}
-    IsValid: 1
---- !u!114 &8821076372296327611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2467146911340589197}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0305f30995794b1587fdc2f846c2e9c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+    Rotation: {x: 0, y: 0, z: 0, w: 0}
+    Scale: {x: 0, y: 0, z: 0}
+    IsValid: 0
 --- !u!114 &4776378443941551050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,8 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _componentIndexCache: 0
-  _addedNetworkObject: {fileID: 8713193681178082148}
-  _networkObjectCache: {fileID: 8713193681178082148}
+  _addedNetworkObject: {fileID: 8821076372296327611}
+  _networkObjectCache: {fileID: 0}
 --- !u!1 &5601335443679567954
 GameObject:
   m_ObjectHideFlags: 0

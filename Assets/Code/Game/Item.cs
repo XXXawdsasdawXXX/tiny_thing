@@ -2,7 +2,7 @@
 
 namespace Code.Game
 {
-    public class Item : NetworkBehaviour
+    public class Item : NetworkObject
     {
         
     }

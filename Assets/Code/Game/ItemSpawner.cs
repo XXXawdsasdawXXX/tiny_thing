@@ -1,5 +1,7 @@
-﻿using FishNet.Connection;
+﻿using FishNet;
+using FishNet.Connection;
 using FishNet.Object;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Code.Game
@@ -20,9 +22,7 @@ namespace Code.Game
         {
             if (_itemInstance == null && Input.GetKeyDown(KeyCode.F1))
             {
-                _itemInstance = Instantiate(_itemPrefab, transform.position + Vector3.right, Quaternion.identity);
-            
-                SpawnObject(_itemInstance.gameObject);
+               DropItemsRPC(_itemPrefab, transform.position + Vector3.right);
             }
 
             if (_itemInstance != null && Input.GetKeyDown(KeyCode.F2))
@@ -36,7 +36,8 @@ namespace Code.Game
         [ServerRpc]
         private void SpawnObject(GameObject instance)
         {
-            ServerManager.Spawn(instance);
+            
+            instance.SetActive(true);
         }
         
         
@@ -44,6 +45,15 @@ namespace Code.Game
         private void DeleteObject()
         {
             ServerManager.Despawn(_itemInstance.gameObject);
+        }
+        
+        [ServerRpc]
+        private void DropItemsRPC(NetworkObject prefab, Vector3 position)
+        {
+            var _networkManager = InstanceFinder.NetworkManager;
+            var drop = _networkManager.GetPooledInstantiated(prefab,position,Quaternion.identity,true);
+            _networkManager.ServerManager.Spawn(drop);
+            _networkManager.SceneManager.AddOwnerToDefaultScene(drop);
         }
     }
 }
