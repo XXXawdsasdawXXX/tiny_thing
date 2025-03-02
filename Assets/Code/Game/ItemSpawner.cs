@@ -1,4 +1,5 @@
-﻿using FishNet.Object;
+﻿using FishNet.Connection;
+using FishNet.Object;
 using UnityEngine;
 
 namespace Code.Game
@@ -7,7 +8,7 @@ namespace Code.Game
     {
         [SerializeField] private Item _itemPrefab;
         [SerializeField] private Item _itemInstance;
-        
+        [SerializeField] private int _count;
         public override void OnStartClient()
         {
             base.OnStartClient();
@@ -19,29 +20,30 @@ namespace Code.Game
         {
             if (_itemInstance == null && Input.GetKeyDown(KeyCode.F1))
             {
-                SpawnObject();
+                _itemInstance = Instantiate(_itemPrefab, transform.position + Vector3.right, Quaternion.identity);
+            
+                SpawnObject(_itemInstance);
             }
 
             if (_itemInstance != null && Input.GetKeyDown(KeyCode.F2))
             {
                 DeleteObject();
+                
+                _itemInstance = null;
             }
         }
 
         [ServerRpc]
-        private void SpawnObject()
+        private void SpawnObject(Item item)
         {
-            _itemInstance = Instantiate(_itemPrefab, transform.position + Vector3.right, Quaternion.identity);
-        
-            ServerManager.Spawn(_itemInstance.gameObject);
+            ServerManager.Spawn(item.gameObject);
         }
+        
         
         [ServerRpc]
         private void DeleteObject()
         {
             ServerManager.Despawn(_itemInstance.gameObject);
-
-            _itemInstance = null;
         }
     }
 }

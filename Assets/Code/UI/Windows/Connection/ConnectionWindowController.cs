@@ -11,7 +11,9 @@ namespace Code.UI.Windows.Connection
         private void Awake()
         {
             view.TextUserIP.SetText("your ip: " + ConnectionHandler.GetLocalIPAddress());
+          
             view.InputFieldHostIP.SetTextWithoutNotify(_connectionHandler.LastJoinedIP);
+            
             view.Open();
         }
 

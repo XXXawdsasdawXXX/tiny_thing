@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using FishNet.Object;
 
 namespace Code.Game
 {
-    public class Item : MonoBehaviour
+    public class Item : NetworkBehaviour
     {
         
     }
