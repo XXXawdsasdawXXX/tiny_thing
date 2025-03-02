@@ -22,8 +22,6 @@ namespace Code.Game
             _networkManager.ServerManager.Spawn(drop);
             _networkManager.SceneManager.AddOwnerToDefaultScene(drop);
             _itemInstances.Add(drop);
-            // Отправляем клиенту ссылку на объект
-            //SetClientItemInstance(drop);
         }
 
 
