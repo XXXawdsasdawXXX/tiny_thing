@@ -313,7 +313,7 @@ namespace FishNet.Object
                 methodHash = ReadRpcHash(reader);
 
             reader.NetworkManager = _networkObjectCache.NetworkManager;
-            
+
             if (_replicateRpcDelegates.TryGetValueIL2CPP(methodHash.Value, out ReplicateRpcDelegate del))
                 del.Invoke(reader, sendingClient, channel);
             else
@@ -329,7 +329,7 @@ namespace FishNet.Object
                 methodHash = ReadRpcHash(reader);
 
             reader.NetworkManager = _networkObjectCache.NetworkManager;
-            
+
             if (_reconcileRpcDelegates.TryGetValueIL2CPP(methodHash.Value, out ReconcileRpcDelegate del))
                 del.Invoke(reader, channel);
             else
@@ -535,7 +535,11 @@ namespace FishNet.Object
             if (findResult == ReplicateTickFinder.DataPlacementResult.Exact)
             {
                 data = replicatesHistory[replicateIndex];
+#if !FISHNET_STABLE_REPLICATESTATES
                 state = (ReplicateState.Replayed | ReplicateState.Ticked | ReplicateState.Created);
+#else
+                state = ReplicateState.ReplayedCreated;
+#endif
 
                 //SetReplicateTick(data.GetTick(), true);
                 del.Invoke(data, state, channel);
@@ -547,7 +551,16 @@ namespace FishNet.Object
         /// </summary>
         protected internal void Replicate_Replay_NonAuthoritative<T>(uint replayTick, ReplicateUserLogicDelegate<T> del, RingBuffer<T> replicatesHistory, Channel channel) where T : IReplicateData
         {
-                         
+            //NOTESSTART
+            /* When inserting states only replay the first state after the reconcile.
+             * This prevents an inconsistency on running created states if other created states
+             * were to arrive late. Essentially the first state is considered 'current' and the rest
+             * are acting as a buffer against unsteady networking conditions. */
+
+            /* When appending states all created can be run. Appended states are only inserted after they've
+             * run at the end of the tick, which performs of it's own queue. Because of this, it's safe to assume
+             * if the state has been inserted into the past it has already passed it's buffer checks. */
+            //NOTESEND             
             T data;
             ReplicateState state;
             bool isAppendedOrder = _networkObjectCache.PredictionManager.IsAppendedStateOrder;
@@ -560,7 +573,8 @@ namespace FishNet.Object
                 if (findResult == ReplicateTickFinder.DataPlacementResult.Exact)
                 {
                     data = replicatesHistory[replicateIndex];
-                    //state = ReplicateState.ReplayedCreated;
+
+#if !FISHNET_STABLE_REPLICATESTATES
                     state = ReplicateState.Replayed;
 
                     bool isCreated = _readReplicateTicks.Contains(replayTick);
@@ -572,6 +586,10 @@ namespace FishNet.Object
                      * and not yet ticked if state order is inserted rather than append. */
                     if (replayTick <= _lastOrderedReplicatedTick || isCreated)
                         state |= ReplicateState.Ticked;
+#else
+                    //state = ReplicateState.ReplayedCreated;
+                    state = (_readReplicateTicks.Contains(replayTick)) ? ReplicateState.ReplayedCreated : ReplicateState.ReplayedFuture;
+#endif
                 }
                 else
                 {
@@ -590,7 +608,11 @@ namespace FishNet.Object
             {
                 data = default;
                 data.SetTick(replayTick);
+#if !FISHNET_STABLE_REPLICATESTATES
                 state = ReplicateState.Replayed;
+#else
+                state = ReplicateState.ReplayedFuture;
+#endif
             }
 
             //uint dataTick = data.GetTick();
@@ -673,7 +695,11 @@ namespace FishNet.Object
                         {
                             _remainingReconcileResends = pm.RedundancyCount;
 
+#if !FISHNET_STABLE_REPLICATESTATES
                             ReplicateData(queueEntry, (ReplicateState.Ticked | ReplicateState.Created));
+#else
+                            ReplicateData(queueEntry, ReplicateState.CurrentCreated);
+#endif
 
                             //Update count since old entries were dropped and one replicate run.
                             count = replicatesQueue.Count;
@@ -689,7 +715,11 @@ namespace FishNet.Object
                                 int consumeAmount = Mathf.Min(maximumAllowedConsumes, maximumPossibleConsumes);
 
                                 for (int i = 0; i < consumeAmount; i++)
+#if !FISHNET_STABLE_REPLICATESTATES
                                     ReplicateData(replicatesQueue.Dequeue(), (ReplicateState.Ticked | ReplicateState.Created));
+#else
+                                    ReplicateData(replicatesQueue.Dequeue(), ReplicateState.CurrentCreated);
+#endif
                             }
                         }
                     }
@@ -712,13 +742,21 @@ namespace FishNet.Object
                 uint tick = (GetDefaultedLastReplicateTick() + 1);
                 T data = default(T);
                 data.SetTick(tick);
+#if !FISHNET_STABLE_REPLICATESTATES
                 ReplicateData(data, ReplicateState.Ticked);
+#else
+                ReplicateData(data, ReplicateState.CurrentFuture);
+#endif
             }
 
             void ReplicateData(T data, ReplicateState state)
             {
                 uint tick = data.GetTick();
+#if !FISHNET_STABLE_REPLICATESTATES
                 SetReplicateTick(tick, state.ContainsCreated());
+#else
+                SetReplicateTick(tick, (state == ReplicateState.CurrentCreated));
+#endif
                 /* If server or appended state order then insert/add to history when run
                  * within this method.
                  * Whether data is inserted/added into the past (replicatesHistory) depends on
@@ -746,7 +784,11 @@ namespace FishNet.Object
                 else
                 {
                     InsertIntoReplicateHistory(tick, data, replicatesHistory);
+#if !FISHNET_STABLE_REPLICATESTATES
                     if (state.ContainsCreated())
+#else
+                    if (state == ReplicateState.CurrentCreated)
+#endif
                         _readReplicateTicks.Add(tick);
                 }
 
@@ -844,8 +886,12 @@ namespace FishNet.Object
             _lastCreatedTick = dataTick;
             SetReplicateTick(dataTick, createdReplicate: true);
 
+#if !FISHNET_STABLE_REPLICATESTATES
             //Owner always replicates with new data.
             del.Invoke(data, (ReplicateState.Ticked | ReplicateState.Created), channel);
+#else
+            del.Invoke(data, ReplicateState.CurrentCreated, channel);
+#endif
         }
 
         /// <summary>

@@ -104,7 +104,9 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 4512293259955182956}
   _tickCallbacks: 10
   _isActive: 1
+  _is2d: 0
   _axes: 3
+  _chancePerAxes: 0.8
   _rotationChance: 0.33
   _randomMovement: 1
   _goalDatas: []
