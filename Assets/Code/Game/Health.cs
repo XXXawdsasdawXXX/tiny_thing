@@ -39,7 +39,7 @@ namespace Code.Game
             return _health.Value / Max;
         }
         
-        [ServerRpc(RequireOwnership = false)]
+        [ServerRpc]
         public void UpdateHealth(int value)
         {
             _health.Value += value;
