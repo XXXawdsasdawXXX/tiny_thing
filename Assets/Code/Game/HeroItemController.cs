@@ -24,8 +24,11 @@ namespace Code.Game
 
             if (Input.GetKeyDown(KeyCode.F1))
             {
-                Debug.Log($"try spawn item {_itemSpawner != null}");
-                _itemSpawner.DropItemsRPC(transform.position + Vector3.right);
+                _itemSpawner.DropItemsRPC(transform.position + Vector3.right, out NetworkObject item);
+                
+                Debug.Log($"try spawn item {item.name}");
+                
+                
             }
 
             if (Input.GetKeyDown(KeyCode.F2))
