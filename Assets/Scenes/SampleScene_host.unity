@@ -721,6 +721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 469407318}
   - component: {fileID: 469407317}
+  - component: {fileID: 469407319}
   m_Layer: 0
   m_Name: services
   m_TagString: Untagged
@@ -757,6 +758,18 @@ Transform:
   - {fileID: 328750982}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &469407319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 469407316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84b9e1bd125a4ce28237fa631a7d1408, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &492118943
 GameObject:
   m_ObjectHideFlags: 0

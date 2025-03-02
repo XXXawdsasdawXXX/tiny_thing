@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
+using Code.Core.GameLoop;
 using UnityEngine;
 
 namespace Code.Core.ServiceLocator
@@ -14,7 +15,7 @@ namespace Code.Core.ServiceLocator
 
         private MonoBehaviour[] _allObjects;
         private List<IService> _services = new();
-        
+
         private void Awake()
         {
             if (Instance != null)
@@ -30,8 +31,13 @@ namespace Code.Core.ServiceLocator
            
             InitList(ref _services);
         }
-        
-        public T FindConfig<T>() where T : ScriptableObject
+
+        public List<IGameListeners> GetGameListeners()
+        {
+            return GetContainerComponents<IGameListeners>();
+        }
+
+        public T GetConfig<T>() where T : ScriptableObject
         {
             foreach (ScriptableObject scriptableObject in _configs)
             {
@@ -44,7 +50,7 @@ namespace Code.Core.ServiceLocator
             return null;
         }
 
-        public T FindService<T>() where T : IService
+        public T GetService<T>() where T : IService
         {
             foreach (IService service in _services)
             {
@@ -56,7 +62,7 @@ namespace Code.Core.ServiceLocator
 
             return default;
         }
-        
+
         private void InitList<T>(ref List<T> list)
         {
             Type[] types = Assembly.GetExecutingAssembly().GetTypes();
@@ -79,6 +85,24 @@ namespace Code.Core.ServiceLocator
             {
                 list.AddRange(typedMono);
             }
+        }
+
+        private List<T> GetContainerComponents<T>()
+        {
+            List<T> list = new();
+
+            list.AddRange(_services.OfType<T>().ToList());
+
+            IEnumerable<T> mbListeners = _allObjects.OfType<T>();
+            foreach (T mbListener in mbListeners)
+            {
+                if (!list.Contains(mbListener))
+                {
+                    list.Add(mbListener);
+                }
+            }
+
+            return list;
         }
     }
 }
