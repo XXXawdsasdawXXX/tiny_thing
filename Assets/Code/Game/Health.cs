@@ -19,7 +19,18 @@ namespace Code.Game
             
             _health.Value = 10;
             
-                      
+            _health.OnChange += HealthOnOnChange;
+
+        }
+
+        private void OnDestroy()
+        {
+            _health.OnChange -= HealthOnOnChange;
+            
+        }
+
+        private void HealthOnOnChange(float prev, float next, bool asserver)
+        {
             Changed?.Invoke();
         }
 
@@ -39,13 +50,13 @@ namespace Code.Game
             return _health.Value / Max;
         }
         
-        [ServerRpc]
+        [ServerRpc(RequireOwnership = false)]
         public void UpdateHealth(int value)
         {
             _health.Value += value;
          
             Debug.Log($"update health {_health.Value}");
-            Changed?.Invoke();
+        //    Changed?.Invoke();
         }
     }
 }
