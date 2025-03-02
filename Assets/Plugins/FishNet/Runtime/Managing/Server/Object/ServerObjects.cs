@@ -508,6 +508,8 @@ namespace FishNet.Managing.Server
                 return;
             }
 
+            networkObject.name += $"_{networkObject.OwnerId}_{networkObject.ObjectId}";
+
             if (!NetworkManager.ServerManager.Started)
             {
                 //Neither server nor client are started.
@@ -534,7 +536,7 @@ namespace FishNet.Managing.Server
 
                 predictedSpawn = true;
             }
-
+            
             if (!networkObject.gameObject.scene.IsValid())
             {
                 base.NetworkManager.LogError($"{networkObject.name} is a prefab. You must instantiate the prefab first, then use Spawn on the instantiated copy.");
@@ -574,8 +576,7 @@ namespace FishNet.Managing.Server
                 }
             }
 
-            networkObject.name += $"_{networkObject.ObjectId}";
-            
+          
             if (predictedSpawn)
                 base.NetworkManager.ClientManager.Objects.PredictedSpawn(networkObject, ownerConnection);
             else
