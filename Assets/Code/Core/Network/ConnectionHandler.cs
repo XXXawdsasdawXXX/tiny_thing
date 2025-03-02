@@ -9,34 +9,19 @@ namespace Code.Core.Network
     public class ConnectionHandler : MonoBehaviour
     {
         public string LastJoinedIP => _serverIP;
-        [SerializeField] private EConnectionType _connectionType;
+
         [SerializeField] private string _serverIP = "192.168.1.100";
         [SerializeField] private ushort _port = 7777;
+     
         private void OnEnable()
         {
             InstanceFinder.ClientManager.OnClientConnectionState += OnClientConnectionState;
         }
 
-        /*private void Start()
+        private void OnDisable()
         {
-#if UNITY_EDITOR
-            if (ParrelSync.ClonesManager.IsClone())
-            {
-                ConnectAsClient();
-            }
-            else
-            {
-                if (_connectionType == EConnectionType.Host)
-                {
-                    StartHost();
-                }
-                else if (_connectionType == EConnectionType.Client)
-                {
-                    ConnectAsClient(_serverIP);
-                }
-            }
-#endif
-        }*/
+            InstanceFinder.ClientManager.OnClientConnectionState -= OnClientConnectionState;
+        }
 
         public void ConnectAsClient(string serverIP)
         {
@@ -64,10 +49,6 @@ namespace Code.Core.Network
             InstanceFinder.ClientManager.StartConnection();
       
             Debug.Log($"[Host] Сервер запущен на {GetLocalIPAddress()}:{_port}");
-        }
-        private void OnDisable()
-        {
-            InstanceFinder.ClientManager.OnClientConnectionState -= OnClientConnectionState;
         }
 
         private void OnClientConnectionState(ClientConnectionStateArgs args)
