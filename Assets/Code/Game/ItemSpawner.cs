@@ -14,7 +14,7 @@ namespace Code.Game
         [SerializeField] private int _count;
         
         [ServerRpc(RequireOwnership = false)]
-        public void DropItemsRPC(Vector3 position, out NetworkObject item)
+        public void DropItemsRPC(Vector3 position)
         {
             var _networkManager = InstanceFinder.NetworkManager;
             var drop = _networkManager.GetPooledInstantiated(_itemPrefab, position,Quaternion.identity, true);
@@ -26,7 +26,6 @@ namespace Code.Game
             
             Debug.Log($"spawn item. count = {_itemInstances.Count}");
 
-            item = drop;
         }
 
 
