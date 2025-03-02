@@ -9,12 +9,12 @@ namespace Code.UI
         [SerializeField] private Health _health;
         [SerializeField] private UIImage _fill;
         
-        private void OnEnable()
+        private void Awake()
         {
             _health.Changed += HealthOnChanged;
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             _health.Changed -= HealthOnChanged;
         }
