@@ -1,4 +1,5 @@
-﻿using Code.Core.ServiceLocator;
+﻿using Code.Core.Network;
+using Code.Core.ServiceLocator;
 using FishNet.Object;
 using UnityEngine;
 

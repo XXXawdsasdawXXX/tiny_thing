@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 32421970}
   - component: {fileID: 32421971}
   m_Layer: 0
-  m_Name: items
+  m_Name: network_items
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,9 +170,8 @@ MonoBehaviour:
   _componentIndexCache: 255
   _addedNetworkObject: {fileID: 469407320}
   _networkObjectCache: {fileID: 0}
+  _networkManager: {fileID: 328750981}
   _itemPrefab: {fileID: 8821076372296327611, guid: d3718bd0e5c846d4380ef5e8ed1070b8, type: 3}
-  _itemInstances: []
-  _count: 0
 --- !u!114 &32421971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,6 +433,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1807228304}
   - {fileID: 1228516696}
   - {fileID: 262886657}
   m_Father: {fileID: 0}
@@ -704,7 +704,7 @@ GameObject:
   - component: {fileID: 328750978}
   - component: {fileID: 328750983}
   m_Layer: 0
-  m_Name: networkManager
+  m_Name: network_manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1391,7 +1391,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2039,7 +2039,7 @@ GameObject:
   - component: {fileID: 1807228303}
   - component: {fileID: 1807228302}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: event_system
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2088,12 +2088,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1807228301}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -324.75, y: -202, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 106501065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2124057358
 PrefabInstance:
@@ -2553,10 +2553,9 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 963194228}
-  - {fileID: 1557836634}
-  - {fileID: 106501065}
-  - {fileID: 1807228304}
   - {fileID: 32421969}
   - {fileID: 328750982}
   - {fileID: 469407318}
+  - {fileID: 963194228}
+  - {fileID: 1557836634}
+  - {fileID: 106501065}
