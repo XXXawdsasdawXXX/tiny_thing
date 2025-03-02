@@ -22,7 +22,7 @@ namespace Code.Game
             {
                 _itemInstance = Instantiate(_itemPrefab, transform.position + Vector3.right, Quaternion.identity);
             
-                SpawnObject(_itemInstance);
+                SpawnObject(_itemInstance.gameObject);
             }
 
             if (_itemInstance != null && Input.GetKeyDown(KeyCode.F2))
@@ -34,9 +34,9 @@ namespace Code.Game
         }
 
         [ServerRpc]
-        private void SpawnObject(Item item)
+        private void SpawnObject(GameObject instance)
         {
-            ServerManager.Spawn(item.gameObject);
+            ServerManager.Spawn(instance);
         }
         
         
