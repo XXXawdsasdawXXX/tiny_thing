@@ -1,4 +1,5 @@
 ﻿using Code.UI.Components;
+using Code.UI.Windows.Base;
 using UnityEngine;
 
 namespace Code.UI.Windows.Connection

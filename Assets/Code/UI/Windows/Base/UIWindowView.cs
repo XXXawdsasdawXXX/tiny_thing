@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Code.UI.Windows
+namespace Code.UI.Windows.Base
 {
     public abstract class UIWindowView : MonoBehaviour
     {
