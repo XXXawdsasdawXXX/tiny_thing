@@ -574,6 +574,8 @@ namespace FishNet.Managing.Server
                 }
             }
 
+            networkObject.name += $"_{networkObject.ObjectId}";
+            
             if (predictedSpawn)
                 base.NetworkManager.ClientManager.Objects.PredictedSpawn(networkObject, ownerConnection);
             else
