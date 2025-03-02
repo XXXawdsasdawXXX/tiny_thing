@@ -27,8 +27,13 @@ namespace Code.Core.ServiceLocator
          
             Instance = this;
             
-            _allObjects = FindObjectsOfType<MonoBehaviour>();
-           
+            _allObjects = FindObjectsOfType<MonoBehaviour>(true);
+
+            foreach (MonoBehaviour behaviour in _allObjects)
+            {
+                Debug.Log($"find object {behaviour.name}");
+            }
+            
             InitList(ref _services);
         }
 

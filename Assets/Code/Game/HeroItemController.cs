@@ -1,23 +1,30 @@
-﻿using FishNet.Object;
+﻿using Code.Core.ServiceLocator;
+using FishNet.Object;
 using UnityEngine;
 
 namespace Code.Game
 {
     public class HeroItemController :  NetworkBehaviour
     {
-        [SerializeField] private ItemSpawner _itemSpawner;
+        private ItemSpawner _itemSpawner;
         
         public override void OnStartClient()
         {
             base.OnStartClient();
             
             enabled = IsOwner;
+
+            _itemSpawner = Container.Instance.GetService<ItemSpawner>();
+            
+            Debug.Log($"spawn hero {_itemSpawner != null}");
         }
 
         private void Update()
         {
+
             if (Input.GetKeyDown(KeyCode.F1))
             {
+                Debug.Log($"try spawn item {_itemSpawner != null}");
                 _itemSpawner.DropItemsRPC(transform.position + Vector3.right);
             }
 
