@@ -3,7 +3,7 @@ using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using UnityEngine;
 
-namespace Code.Game
+namespace Game.Entities
 {
     public class Health : NetworkBehaviour
     {
@@ -11,8 +11,8 @@ namespace Code.Game
         public float Current => _health.Value;
         public float Max => 100;
         
-        private readonly SyncVar<float> _health = new SyncVar<float>(); 
-        
+        private readonly SyncVar<float> _health = new();
+
         public override void OnStartClient()
         {
             enabled = IsOwner;
@@ -20,7 +20,6 @@ namespace Code.Game
             _health.Value = 10;
             
             _health.OnChange += HealthOnOnChange;
-
         }
 
         private void OnDestroy()
@@ -46,7 +45,6 @@ namespace Code.Game
 
         public float GetNormalize()
         {
-            Debug.Log($"GetNormalize health {_health.Value} / {Max} = {_health.Value / Max}");
             return _health.Value / Max;
         }
         
@@ -54,9 +52,6 @@ namespace Code.Game
         public void UpdateHealth(int value)
         {
             _health.Value += value;
-         
-            Debug.Log($"update health {_health.Value}");
-        //    Changed?.Invoke();
         }
     }
 }

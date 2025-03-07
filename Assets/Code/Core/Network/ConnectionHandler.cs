@@ -4,7 +4,7 @@ using FishNet.Transporting;
 using FishNet.Transporting.Tugboat;
 using UnityEngine;
 
-namespace Code.Core.Network
+namespace Core.Network
 {
     public class ConnectionHandler : MonoBehaviour
     {

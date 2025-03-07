@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Code.Game
+namespace Game.Entities
 {
     public class Obstacle : MonoBehaviour
     {

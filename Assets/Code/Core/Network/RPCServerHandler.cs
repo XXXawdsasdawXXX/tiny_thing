@@ -1,8 +1,7 @@
-﻿using System;
-using Code.Core.ServiceLocator;
+﻿using Core.ServiceLocator;
 using FishNet.Object;
 
-namespace Code.Core.Network
+namespace Core.Network
 {
     public class RPCServerHandler : NetworkBehaviour, IService
     {

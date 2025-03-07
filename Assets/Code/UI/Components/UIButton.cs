@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Code.UI.Components
+namespace UI.Components
 {
     public class UIButton : MonoBehaviour
     {

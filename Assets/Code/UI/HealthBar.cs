@@ -1,8 +1,8 @@
-﻿using Code.Game;
-using Code.UI.Components;
+﻿using Game.Entities;
+using UI.Components;
 using UnityEngine;
 
-namespace Code.UI
+namespace UI
 {
     public class HealthBar : MonoBehaviour
     {

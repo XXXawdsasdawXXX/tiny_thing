@@ -1,9 +1,8 @@
-using System;
-using Code.Core.Network;
-using Code.UI.Windows.Base;
+using Core.Network;
+using UI.Windows.Base;
 using UnityEngine;
 
-namespace Code.UI.Windows.Connection
+namespace UI.Windows.Connection
 {
     public class ConnectionWindowController : UIWindowController<ConnectionWindowView>
     {

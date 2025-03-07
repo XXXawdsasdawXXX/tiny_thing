@@ -1,7 +1,7 @@
 using FishNet.Object;
 using UnityEngine;
 
-namespace Code.Game
+namespace Game.Entities
 {
     public class HeroMovement : NetworkBehaviour
     {

@@ -1,4 +1,4 @@
-﻿namespace Code.Core.ServiceLocator
+﻿namespace Core.ServiceLocator
 {
     public interface IService
     {

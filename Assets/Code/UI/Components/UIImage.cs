@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Code.UI.Components
+namespace UI.Components
 {
     public class UIImage : MonoBehaviour
     {

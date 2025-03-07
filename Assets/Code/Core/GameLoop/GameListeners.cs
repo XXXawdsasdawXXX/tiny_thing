@@ -1,6 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 
-namespace Code.Core.GameLoop
+namespace Core.GameLoop
 {
     public interface IGameListeners
     {
@@ -12,7 +12,7 @@ namespace Code.Core.GameLoop
         void Unsubscribe();
     }
     
-    public  interface IInitListener : IGameListeners
+    public  interface IInitializeListener : IGameListeners
     {
         UniTask GameInitialize();
     }

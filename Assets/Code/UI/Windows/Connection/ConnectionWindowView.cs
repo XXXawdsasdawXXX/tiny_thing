@@ -1,8 +1,8 @@
-﻿using Code.UI.Components;
-using Code.UI.Windows.Base;
+﻿using UI.Components;
+using UI.Windows.Base;
 using UnityEngine;
 
-namespace Code.UI.Windows.Connection
+namespace UI.Windows.Connection
 {
     public class ConnectionWindowView : UIWindowView
     {

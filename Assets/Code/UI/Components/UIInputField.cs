@@ -2,7 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-namespace Code.UI.Components
+namespace UI.Components
 {
     public class UIInputField : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace Code.UI.Components
+namespace UI.Components
 {
     public class UIText : MonoBehaviour
     {

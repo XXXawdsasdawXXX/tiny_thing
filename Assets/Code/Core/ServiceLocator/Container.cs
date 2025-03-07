@@ -1,11 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Collections.Generic;
-using Code.Core.GameLoop;
+using Core.GameLoop;
 using UnityEngine;
 
-namespace Code.Core.ServiceLocator
+namespace Core.ServiceLocator
 {
     public class Container : MonoBehaviour
     {

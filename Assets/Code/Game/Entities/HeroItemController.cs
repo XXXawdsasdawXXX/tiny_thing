@@ -1,13 +1,13 @@
-﻿using Code.Core.Network;
-using Code.Core.ServiceLocator;
+﻿using Core.Network;
+using Core.ServiceLocator;
 using FishNet.Object;
 using UnityEngine;
 
-namespace Code.Game
+namespace Game.Entities
 {
     public class HeroItemController :  NetworkBehaviour
     {
-        private ItemSpawner _itemSpawner;
+        private NetworkItemSpawner _networkItemSpawner;
         
         public override void OnStartClient()
         {
@@ -15,9 +15,9 @@ namespace Code.Game
             
             enabled = IsOwner;
 
-            _itemSpawner = Container.Instance.GetService<ItemSpawner>();
+            _networkItemSpawner = Container.Instance.GetService<NetworkItemSpawner>();
             
-            Debug.Log($"spawn hero {_itemSpawner != null}");
+            Debug.Log($"spawn hero {_networkItemSpawner != null}");
         }
 
         private void Update()
@@ -25,13 +25,13 @@ namespace Code.Game
 
             if (Input.GetKeyDown(KeyCode.F1))
             {
-                _itemSpawner.DropItemsRPC(transform.position + Vector3.right);
+                _networkItemSpawner.SpawnItem(transform.position + Vector3.right);
 
             }
 
             if (Input.GetKeyDown(KeyCode.F2))
             {
-                _itemSpawner.DespawnItemRPC();
+                _networkItemSpawner.DespawnItem();
             }
         }
 

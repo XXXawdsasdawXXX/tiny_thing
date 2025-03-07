@@ -1,7 +1,7 @@
-using Code.UI.Components;
+using UI.Components;
 using UnityEngine;
 
-namespace Code.UI.Windows.Profiler
+namespace UI.Windows.Profiler
 {
     public class ProfilerWindow : MonoBehaviour
     {

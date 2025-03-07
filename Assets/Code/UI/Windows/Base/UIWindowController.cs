@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Code.UI.Windows.Base
+namespace UI.Windows.Base
 {
     public abstract class UIWindowController<UIView> : MonoBehaviour where UIView : UIWindowView
     {
