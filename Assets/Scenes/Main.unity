@@ -2522,7 +2522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a88aa95cfc794795b873fa198f19b2bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Trigger>k__BackingField: {fileID: 2121122728}
+  <Trigger>k__BackingField: {fileID: 2121122730}
 --- !u!1 &2121122726
 GameObject:
   m_ObjectHideFlags: 0
@@ -2533,7 +2533,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2121122727}
   - component: {fileID: 2121122729}
-  - component: {fileID: 2121122728}
+  - component: {fileID: 2121122730}
   m_Layer: 0
   m_Name: trigger
   m_TagString: Untagged
@@ -2556,18 +2556,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1834211808}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2121122728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2121122726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29527a5bad8043d89c467d8f6071ad68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &2121122729
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2613,6 +2601,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2121122730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121122726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0912c5c197d14c68a1c9d82a03578e51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2124057358
 PrefabInstance:
   m_ObjectHideFlags: 0

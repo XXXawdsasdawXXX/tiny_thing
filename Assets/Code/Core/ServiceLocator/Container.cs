@@ -13,7 +13,7 @@ namespace Core.ServiceLocator
         
         [SerializeField] private List<ScriptableObject> _configs;
 
-        private Mono[] _allObjects;
+        private Essential.Mono[] _allObjects;
         private List<IService> _services = new();
 
         private void Awake()
@@ -27,7 +27,7 @@ namespace Core.ServiceLocator
          
             Instance = this;
             
-            _allObjects = FindObjectsOfType<Mono>(true);
+            _allObjects = FindObjectsOfType<Essential.Mono>(true);
 
             foreach (MonoBehaviour behaviour in _allObjects)
             {

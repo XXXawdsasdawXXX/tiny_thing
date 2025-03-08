@@ -2,6 +2,7 @@
     "name": "Unity.FishNet.Codegen",
     "rootNamespace": "",
     "references": [
+        "Essential",
         "FishNet.Runtime",
         "FishNet.Codegen.Cecil",
         "GameKit.Dependencies"

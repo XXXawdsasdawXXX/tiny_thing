@@ -10,7 +10,7 @@ using UnityEngine;
 namespace FishNet.Object
 {
 
-    public abstract partial class NetworkBehaviour : MonoBehaviour
+    public abstract partial class NetworkBehaviour : Essential.Mono
     {
         #region Private.        
         /// <summary>

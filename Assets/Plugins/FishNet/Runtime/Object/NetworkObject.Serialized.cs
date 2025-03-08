@@ -16,7 +16,7 @@ using UnityEditor;
 
 namespace FishNet.Object
 {
-    public partial class NetworkObject : MonoBehaviour
+    public partial class NetworkObject : Essential.Mono
     {
         #region Public.
         /// <summary>

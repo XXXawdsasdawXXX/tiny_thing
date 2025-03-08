@@ -1,13 +1,14 @@
 ﻿using System;
 using Sirenix.OdinInspector;
 
-namespace Core.Data
+namespace Essential
 {
     [Serializable]
     public struct UniqueID
     {
         [ReadOnly, ShowInInspector] public string Value { get; private set; }
         
+        [Button]
         public void Validate()
         {
             if (string.IsNullOrEmpty(Value))

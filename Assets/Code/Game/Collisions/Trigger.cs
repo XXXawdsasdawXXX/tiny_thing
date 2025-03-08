@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Collisions
 {
-    public class Trigger : Core.Mono
+    public class Trigger : Essential.Mono
     {
         public event Action<GameObject> Enter; 
         public event Action<GameObject> Exit; 

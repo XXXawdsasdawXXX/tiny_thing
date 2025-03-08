@@ -2,6 +2,7 @@
     "name": "UI",
     "rootNamespace": "",
     "references": [
+        "GUID:6a24fdd54bee8f643acdeb5b4def6722",
         "GUID:5a8c83cc7028e7a43b312650541308bb",
         "GUID:c219fb5d7743fef49b6cce2af7546a5f",
         "GUID:6055be8ebefd69e48b49212b09b47b2f",

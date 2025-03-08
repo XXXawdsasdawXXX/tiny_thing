@@ -15,7 +15,7 @@ namespace FishNet.Object
     /// Scripts which inherit from NetworkBehaviour can be used to gain insight of, and perform actions on the network.
     /// </summary>
     [ExcludeSerialization]
-    public abstract partial class NetworkBehaviour : MonoBehaviour
+    public abstract partial class NetworkBehaviour : Essential.Mono
     {
         #region Public.
         /// <summary>

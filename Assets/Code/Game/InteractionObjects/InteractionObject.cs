@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.InteractionObjects
 {
-    public abstract class InteractionObject : Core.Mono
+    public abstract class InteractionObject : Essential.Mono
     {
         public event Action<InteractionObject> InteractionStarted;
         
@@ -12,7 +12,6 @@ namespace Game.InteractionObjects
         
         public EInteractionObjectType Type { get; private set; }
 
-        public string ID { get; private set; }
 
 
         public virtual void StartInteraction()

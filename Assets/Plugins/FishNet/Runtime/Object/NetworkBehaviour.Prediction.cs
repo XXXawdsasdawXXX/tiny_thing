@@ -157,7 +157,7 @@ namespace FishNet.Object
     }
     #endregion
 
-    public abstract partial class NetworkBehaviour : MonoBehaviour
+    public abstract partial class NetworkBehaviour : Essential.Mono
     {
         #region Public.
         /// <summary>

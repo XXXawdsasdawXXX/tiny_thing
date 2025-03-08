@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace FishNet.Object
 {
-    public partial class NetworkObject : MonoBehaviour
+    public partial class NetworkObject : Essential.Mono
     {
 
         /// <summary>
