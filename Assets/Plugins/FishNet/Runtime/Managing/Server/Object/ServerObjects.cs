@@ -508,7 +508,7 @@ namespace FishNet.Managing.Server
                 return;
             }
 
-            networkObject.name += $"_{networkObject.OwnerId}_{networkObject.ObjectId}";
+            networkObject.name += $"_{networkObject.GetHashCode()}";
 
             if (!NetworkManager.ServerManager.Started)
             {
