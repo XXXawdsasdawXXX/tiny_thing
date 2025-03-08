@@ -7,6 +7,7 @@ using FishNet.Transporting;
 using FishNet.Transporting.Multipass;
 using System;
 using System.Runtime.CompilerServices;
+using Essential;
 using UnityEngine;
 
 namespace FishNet.Managing.Server
@@ -116,6 +117,8 @@ namespace FishNet.Managing.Server
                 NetworkManager.LogWarning($"NetworkObject {nob} cannot be spawned because it is not marked as spawnable.");
                 return;
             }
+            
+            Log.Info($"Spawn {gameObject.name}", Color.red, this);
             Objects.Spawn(nob, ownerConnection, scene);
         }
 

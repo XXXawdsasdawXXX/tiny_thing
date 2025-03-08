@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UI
 {
-    public class InteractionIcon : MonoBehaviour
+    public class UIInteractionIcon : MonoBehaviour
     {
         [SerializeField] private InteractionObject _interactionObject;
         

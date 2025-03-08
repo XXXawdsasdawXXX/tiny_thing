@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UI
 {
-    public class HealthBar : MonoBehaviour
+    public class UIHealthBar : MonoBehaviour
     {
         [SerializeField] private Health _health;
         [SerializeField] private UIImage _fill;
