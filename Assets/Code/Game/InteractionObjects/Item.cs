@@ -1,6 +1,6 @@
 ﻿using FishNet.Object;
 
-namespace Game.Items
+namespace Game.InteractionObjects
 {
     public class Item : NetworkObject
     {

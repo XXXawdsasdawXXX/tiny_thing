@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Core.Network
 {
-    public class ConnectionHandler : MonoBehaviour
+    public sealed class ConnectionHandler : MonoBehaviour
     {
         public string LastJoinedIP => _serverIP;
 

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Core.Data
 {
     [Serializable]
-    public class UnitySerializableDictionary<TKey, TValue> 
+    public sealed class UnitySerializableDictionary<TKey, TValue> 
         : Dictionary<TKey, TValue>, ISerializationCallbackReceiver
     {
         [SerializeField] private List<TKey> _keys = new();

@@ -6,7 +6,7 @@ using Unity.Mathematics;
 
 namespace Core.Input
 {
-    public class InputManager : IService, IInitializeListener, IUpdateListener
+    public sealed class InputManager : IService, IInitializeListener, IUpdateListener
     {
         public event Action<EInputAction> ActionStarted; 
         public event Action<EInputAction> ActionEnded; 

@@ -234,8 +234,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 728428691
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -4053901175114318403, guid: 02247a0ddb4fa704ebe539c93d109250, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -247,7 +247,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!1 &5483374850134618058
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +310,8 @@ MonoBehaviour:
   - {fileID: 7987240356325076128}
   - {fileID: 6778264612898636302}
   - {fileID: 3634067845205420892}
-  - {fileID: 0}
+  - {fileID: -227475778803773201}
+  - {fileID: 4774697951357296534}
   InitializedParentNetworkBehaviour: {fileID: 0}
   InitializedNestedNetworkObjects: []
   RuntimeParentNetworkBehaviour: {fileID: 0}
@@ -335,7 +336,7 @@ MonoBehaviour:
   _spectatorInterpolation: 2
   _enableTeleport: 0
   _teleportThreshold: 1
-  <PrefabId>k__BackingField: 9
+  <PrefabId>k__BackingField: 11
   <SpawnableCollectionId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 15862742508312574335
   <SceneId>k__BackingField: 0
@@ -410,9 +411,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &6778264612898636302
 MonoBehaviour:
@@ -464,9 +465,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.37846038}
-  m_Size: {x: 0.5, y: 0.75692075}
-  m_Direction: 0
+  m_Offset: {x: 0, y: 0.1}
+  m_Size: {x: 0.3, y: 0.19}
+  m_Direction: 1
 --- !u!114 &2934239996263089593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,9 +511,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c2fefa7c64f489f8f3eda4b1d94f09b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 3
   _addedNetworkObject: {fileID: 8329376548906989968}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 8329376548906989968}
 --- !u!114 &4774697951357296534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -525,9 +526,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a041ffa9003645c4b1e9497a19ed8f37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 4
   _addedNetworkObject: {fileID: 8329376548906989968}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 8329376548906989968}
 --- !u!1 &6401220223736595008
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,7 +557,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6401220223736595008}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -589,7 +590,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1014087249
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &1681597184786988199

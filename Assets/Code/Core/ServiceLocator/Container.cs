@@ -7,13 +7,13 @@ using UnityEngine;
 
 namespace Core.ServiceLocator
 {
-    public class Container : MonoBehaviour
+    public sealed class Container : MonoBehaviour
     {
         public static Container Instance { get; private set; }
         
         [SerializeField] private List<ScriptableObject> _configs;
 
-        private MonoBehaviour[] _allObjects;
+        private Mono[] _allObjects;
         private List<IService> _services = new();
 
         private void Awake()
@@ -27,7 +27,7 @@ namespace Core.ServiceLocator
          
             Instance = this;
             
-            _allObjects = FindObjectsOfType<MonoBehaviour>(true);
+            _allObjects = FindObjectsOfType<Mono>(true);
 
             foreach (MonoBehaviour behaviour in _allObjects)
             {

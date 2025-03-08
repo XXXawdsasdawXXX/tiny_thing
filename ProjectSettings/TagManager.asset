@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Game
+    uniqueID: 728428691
+    locked: 0
+  - name: WorldUI
+    uniqueID: 1014087249
+    locked: 0
+  - name: ScreenUI
+    uniqueID: 599633593
+    locked: 0

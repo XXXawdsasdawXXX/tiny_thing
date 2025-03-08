@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Core.GameLoop
 {
-    public class GameEventDispatcher : MonoBehaviour, IService
+    public sealed class GameEventDispatcher : MonoBehaviour, IService
     {
         private readonly List<IInitializeListener> _initListeners = new();
         private readonly List<ILoadListener> _loadListeners = new();
@@ -19,6 +19,7 @@ namespace Core.GameLoop
 
         private void Awake()
         {
+            _initializeListeners();
             _bootGame();
         }
 

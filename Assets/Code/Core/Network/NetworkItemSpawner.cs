@@ -6,13 +6,13 @@ using UnityEngine;
 
 namespace Core.Network
 {
-    public class NetworkItemSpawner : NetworkBehaviour, IService
+    public sealed class NetworkItemSpawner : NetworkBehaviour, IService
     {
         [SerializeField] private NetworkManager _networkManager;
         [SerializeField] private NetworkObject _itemPrefab;
       
         private readonly List<NetworkObject> _itemInstances = new();
-
+        
         
         [ServerRpc(RequireOwnership = false)]
         public void SpawnItem(Vector3 position)

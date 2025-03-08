@@ -1,16 +1,15 @@
 ﻿using System;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
-namespace Core.Essential
+namespace Core
 {
     public static class Log
     {
         public static void Info(string message, object context = null)
         {
-            if (context is Object unityObject)
+            if (context != null)
             {
-                Debug.Log(message, unityObject);
+                Debug.Log($"{context.GetType().Name}: {message}");
                 return;
             }
             
@@ -19,9 +18,9 @@ namespace Core.Essential
 
         public static void Info(string message, Color color, object context = null)
         {
-            if (context is Object unityObject)
+            if (context != null)
             {
-                Debug.Log($"<color=#{ColorUtility.ToHtmlStringRGBA(color)}>" + message + "</color>", unityObject);
+                Debug.Log($"<color=#{ColorUtility.ToHtmlStringRGBA(color)}>{context.GetType().Name}: {message}</color>");
                 return;
             }
             
@@ -30,9 +29,10 @@ namespace Core.Essential
 
         public static void Error(string message, object context = null)
         {
-            if (context is Object unityObject)
+            if (context != null)
             {
-                Debug.LogError(message, unityObject);
+                Debug.LogError($"{context}: {message}");
+                return;
             }
             
             Debug.LogError(message);
@@ -40,9 +40,9 @@ namespace Core.Essential
 
         public static void Warning(string message, object context = null)
         {
-            if (context is Object unityObject)
+            if (context != null)
             {
-                Debug.LogWarning(message, unityObject);
+                Debug.LogWarning($"{context}: {message}");
                 return;
             }
             
