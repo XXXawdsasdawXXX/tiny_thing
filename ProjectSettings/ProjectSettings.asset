@@ -648,7 +648,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Standalone: FUSION_LOGLEVEL_INFO;FUSION_WEAVER;FUSION2;EDGEGAP_PLUGIN_SERVERS;FISHNET;FISHNET_V4;FISHNET_PRO
+    Standalone: FUSION_LOGLEVEL_INFO;FUSION_WEAVER;FUSION2;EDGEGAP_PLUGIN_SERVERS;FISHNET;FISHNET_V4;FISHNET_PRO;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
