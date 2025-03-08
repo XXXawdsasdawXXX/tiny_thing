@@ -50,7 +50,7 @@ namespace Core.GameLoop
 
             if (listener is ISubscriber subscriber)
             {
-                subscriber.Subscribe();
+                await subscriber.Subscribe();
                 _subscribers.Add(subscriber);
             }
 
