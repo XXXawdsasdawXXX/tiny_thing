@@ -137,6 +137,7 @@ namespace FishNet.Managing.Server
             }
 
             NetworkObject nob = go.GetComponent<NetworkObject>();
+            Log.Info($"Despawn {gameObject.name}", Color.red, this);
             Despawn(nob, despawnType);
         }
 
