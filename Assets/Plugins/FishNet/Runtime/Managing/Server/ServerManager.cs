@@ -31,6 +31,10 @@ namespace FishNet.Managing.Server
     public sealed partial class ServerManager : MonoBehaviour
     {
         #region Public.
+
+        public event Action<NetworkObject> OnSpawn; 
+        public event Action<NetworkObject> OnDespawn; 
+
         /// <summary>
         /// Called after the local server connection state changes.
         /// </summary>

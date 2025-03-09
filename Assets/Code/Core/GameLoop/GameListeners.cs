@@ -2,37 +2,37 @@
 
 namespace Core.GameLoop
 {
-    public interface IGameListeners
+    public interface IGameListener
     {
     }
 
-    public interface ISubscriber : IGameListeners
+    public interface ISubscriber : IGameListener
     {
         UniTask Subscribe();
         void Unsubscribe();
     }
     
-    public  interface IInitializeListener : IGameListeners
+    public  interface IInitializeListener : IGameListener
     {
         UniTask GameInitialize();
     }
 
-    public interface ILoadListener : IGameListeners
+    public interface ILoadListener : IGameListener
     {
         UniTask GameLoad();
     }
 
-    public interface IStartListener : IGameListeners
+    public interface IStartListener : IGameListener
     {
         UniTask GameStart();
     }
 
-    public interface IUpdateListener : IGameListeners
+    public interface IUpdateListener : IGameListener
     {
         void GameUpdate();
     }
     
-    public interface IExitListener : IGameListeners
+    public interface IExitListener : IGameListener
     {
         void GameExit();
     }

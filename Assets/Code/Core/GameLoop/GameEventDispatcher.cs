@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
 using Core.ServiceLocator;
 using Cysharp.Threading.Tasks;
-using LiteNetLib;
 using Unity.Profiling;
-using UnityEngine;
 
 namespace Core.GameLoop
 {
-    public sealed class GameEventDispatcher : MonoBehaviour, IService
+    public sealed class GameEventDispatcher : Essential.Mono, IService
     {
         private readonly List<IInitializeListener> _initListeners = new();
         private readonly List<ILoadListener> _loadListeners = new();
@@ -40,7 +38,7 @@ namespace Core.GameLoop
             }
         }
 
-        public async void InitializeRuntimeListener(IGameListeners listener)
+        public async void AddListener(IGameListener listener)
         {
             ProfilerMarker marker = new ProfilerMarker($"RuntimeListener: {listener.GetType().Name}");
             marker.Begin();
@@ -73,7 +71,7 @@ namespace Core.GameLoop
             marker.End();
         }
 
-        public void RemoveRuntimeListener(IGameListeners listener)
+        public void RemoveListener(IGameListener listener)
         {
             if (listener is IUpdateListener tickListener) _tickListeners.Remove(tickListener);
 
@@ -99,9 +97,9 @@ namespace Core.GameLoop
 
         private void _initializeListeners()
         {
-            List<IGameListeners> gameListeners = Container.Instance.GetGameListeners();
+            List<IGameListener> gameListeners = Container.Instance.GetGameListeners();
             
-            foreach (IGameListeners listener in gameListeners)
+            foreach (IGameListener listener in gameListeners)
             {
                 if (listener is IInitializeListener initListener) _initListeners.Add(initListener);
 

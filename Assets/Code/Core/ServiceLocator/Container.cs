@@ -28,18 +28,13 @@ namespace Core.ServiceLocator
             Instance = this;
             
             _allObjects = FindObjectsOfType<Essential.Mono>(true);
-
-            foreach (MonoBehaviour behaviour in _allObjects)
-            {
-                Debug.Log($"find object {behaviour.name}");
-            }
             
             InitList(ref _services);
         }
 
-        public List<IGameListeners> GetGameListeners()
+        public List<IGameListener> GetGameListeners()
         {
-            return GetContainerComponents<IGameListeners>();
+            return GetContainerComponents<IGameListener>();
         }
 
         public T GetConfig<T>() where T : ScriptableObject

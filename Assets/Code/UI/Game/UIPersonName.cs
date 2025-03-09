@@ -1,16 +1,42 @@
-﻿using Game.Entities.Params;
+﻿using Core.GameLoop;
+using Cysharp.Threading.Tasks;
+using Essential;
+using Game.Entities.Params;
 using UI.Components;
 using UnityEngine;
 
 namespace UI
 {
-    public class UIPersonName : Essential.Mono
+    public class UIPersonName : Essential.Mono, IStartListener ,ISubscriber
     {
         [SerializeField] private PersonName _personName;
         [SerializeField] private UIText _uiText;
 
-        public void SetName(string objectName)
+        public UniTask GameStart()
         {
+            _uiText.SetText(_personName.Name);
+            
+            return UniTask.CompletedTask;
+        }
+
+        public UniTask Subscribe()
+        {
+            Log.Info($"2", this);
+            
+            _personName.Changed += SetName;
+            
+            return UniTask.CompletedTask;
+        }
+
+        public void Unsubscribe()
+        {
+            _personName.Changed -= SetName;
+        }
+
+        private void SetName(string objectName)
+        {
+            Log.Info($"3", this);
+            
             _uiText.SetText(objectName);
         }
     }

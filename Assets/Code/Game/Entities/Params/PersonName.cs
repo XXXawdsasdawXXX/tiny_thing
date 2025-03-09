@@ -1,16 +1,16 @@
 ﻿using System;
 using Core.GameLoop;
 using Cysharp.Threading.Tasks;
+using Essential;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
+using UnityEngine;
 
 namespace Game.Entities.Params
 {
     public class PersonName : NetworkBehaviour, ISubscriber
     {
-
-        public event Action Changed;
-
+        public event Action<string> Changed;
         public string Name => _name.Value;
         
         private readonly SyncVar<string> _name = new();
@@ -19,9 +19,7 @@ namespace Game.Entities.Params
         {
             enabled = IsOwner;
             
-            
-            _name.Value = GetHashCode().ToString();
-            
+            SetName(GetHashCode().ToString());
         }
 
         public UniTask Subscribe()
@@ -35,21 +33,19 @@ namespace Game.Entities.Params
         {
             _name.OnChange -= OnNameChanged;
         }
-
-        private void OnDestroy()
-        {
-            
-        }
+        
 
         [ServerRpc(RequireOwnership = false)]
         public void SetName(string personName)
         {
             _name.Value = personName;
+            
+            Log.Info($"{gameObject} set name {personName}", Color.green, this);
         }
 
         private void OnNameChanged(string prev, string next, bool asserver)
         {
-            Changed?.Invoke();
+            Changed?.Invoke(next);
         }
     }
 }

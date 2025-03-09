@@ -119,6 +119,9 @@ namespace FishNet.Managing.Server
             }
             
             Log.Info($"Spawn {gameObject.name}", Color.red, this);
+            
+            OnSpawn?.Invoke(nob);
+            
             Objects.Spawn(nob, ownerConnection, scene);
         }
 
@@ -137,7 +140,7 @@ namespace FishNet.Managing.Server
             }
 
             NetworkObject nob = go.GetComponent<NetworkObject>();
-            Log.Info($"Despawn {gameObject.name}", Color.red, this);
+
             Despawn(nob, despawnType);
         }
 
@@ -151,6 +154,10 @@ namespace FishNet.Managing.Server
             DespawnType resolvedDespawnType = (!despawnType.HasValue)
                 ? networkObject.GetDefaultDespawnType()
                 : despawnType.Value;
+            
+            Log.Info($"Despawn {gameObject.name}", Color.red, this);
+            
+            OnDespawn?.Invoke(networkObject);
             
             Objects.Despawn(networkObject, resolvedDespawnType, asServer: true);
         }
