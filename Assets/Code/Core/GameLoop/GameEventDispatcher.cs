@@ -7,12 +7,12 @@ namespace Core.GameLoop
 {
     public sealed class GameEventDispatcher : Essential.Mono, IService
     {
-        private readonly List<IInitializeListener> _initListeners = new();
-        private readonly List<ILoadListener> _loadListeners = new();
-        private readonly List<IStartListener> _startListeners = new();
-        private readonly List<IUpdateListener> _tickListeners = new();
-        private readonly List<IExitListener> _exitListeners = new();
-        private readonly List<ISubscriber> _subscribers = new();
+        private readonly HashSet<IInitializeListener> _initListeners = new();
+        private readonly HashSet<ILoadListener> _loadListeners = new();
+        private readonly HashSet<IStartListener> _startListeners = new();
+        private readonly HashSet<IUpdateListener> _tickListeners = new();
+        private readonly HashSet<IExitListener> _exitListeners = new();
+        private readonly HashSet<ISubscriber> _subscribers = new();
 
         private bool _isGameBooted;
 
