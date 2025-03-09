@@ -16,6 +16,8 @@ namespace UI
         {
             _uiText.SetText(_personName.Name);
             
+            _personName.Changed += SetName;
+            
             return UniTask.CompletedTask;
         }
 
@@ -23,7 +25,6 @@ namespace UI
         {
             Log.Info($"2", this);
             
-            _personName.Changed += SetName;
             
             return UniTask.CompletedTask;
         }

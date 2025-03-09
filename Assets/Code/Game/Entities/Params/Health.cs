@@ -19,16 +19,15 @@ namespace Game.Entities
             
             _health.Value = 10;
             
-            _health.OnChange += HealthOnOnChange;
+            _health.OnChange += OnHealthChange;
         }
 
         private void OnDestroy()
         {
-            _health.OnChange -= HealthOnOnChange;
-            
+            _health.OnChange -= OnHealthChange;
         }
 
-        private void HealthOnOnChange(float prev, float next, bool asserver)
+        private void OnHealthChange(float prev, float next, bool asserver)
         {
             Changed?.Invoke();
         }

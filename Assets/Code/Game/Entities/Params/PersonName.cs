@@ -17,7 +17,8 @@ namespace Game.Entities.Params
         
         public override void OnStartClient()
         {
-            enabled = IsOwner;
+            //enabled = IsOwner;
+            
             
             SetName(GetHashCode().ToString());
         }
@@ -45,7 +46,10 @@ namespace Game.Entities.Params
 
         private void OnNameChanged(string prev, string next, bool asserver)
         {
-            Changed?.Invoke(next);
+            if (IsOwner)
+            {
+                Changed?.Invoke(next);
+            }
         }
     }
 }
