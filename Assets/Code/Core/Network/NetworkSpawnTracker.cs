@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using Core.ServiceLocator;
+﻿using Core.ServiceLocator;
 using Cysharp.Threading.Tasks;
 using Essential;
 using FishNet;
+using FishNet.Component.Spawning;
+using FishNet.Connection;
 using FishNet.Object;
-using FishNet.Transporting;
 using UnityEngine;
 
 namespace Core.GameLoop
@@ -12,11 +12,13 @@ namespace Core.GameLoop
     public class NetworkSpawnTracker : IService, IInitializeListener, ISubscriber
     {
         private GameEventDispatcher _gameEventDispatcher;
+        private PlayerSpawner _playerSpawner;
 
         public UniTask GameInitialize()
         {
             _gameEventDispatcher = Container.Instance.GetService<GameEventDispatcher>();
-            
+
+            _playerSpawner = Container.Instance.GetService<PlayerSpawner>();
             return UniTask.CompletedTask;
         }
 
@@ -24,10 +26,11 @@ namespace Core.GameLoop
         {
             InstanceFinder.NetworkManager.ServerManager.OnSpawn += OnNetworkObjectSpawned;
             InstanceFinder.NetworkManager.ServerManager.OnDespawn += OnNetworkObjectDespawned;
-            InstanceFinder.ClientManager.OnClientConnectionState += OnClientConnectionState;
+            _playerSpawner.OnSpawned += OnNetworkObjectDespawned;
 
-            
-    
+            //   InstanceFinder.ClientManager.OnClientConnectionState += OnClientConnectionState;
+
+
             return UniTask.CompletedTask;
         }
 
@@ -35,32 +38,47 @@ namespace Core.GameLoop
         {
             InstanceFinder.NetworkManager.ServerManager.OnSpawn -= OnNetworkObjectSpawned;
             InstanceFinder.NetworkManager.ServerManager.OnDespawn -= OnNetworkObjectDespawned;
-            InstanceFinder.ClientManager.OnClientConnectionState -= OnClientConnectionState;
+            _playerSpawner.OnSpawned -= OnNetworkObjectDespawned;
+
         }
 
+        private void OnClientConnectionState(NetworkConnection arg1, bool arg2)
+        {
+            var list = InstanceFinder.NetworkManager.ServerManager.Clients;
+
+            Log.Info($"Client: objects count = {list.Count}", Color.cyan, this);
+            
+            //foreach (NetworkObject obj in list)
+ 
+        }
+
+
+        /*
         private void OnClientConnectionState(ClientConnectionStateArgs connectionState)
         {
-            Log.Info($"Client: connection state {connectionState.ConnectionState}",Color.cyan, this);
+          
+            /*Log.Info($"Client: connection state {connectionState.ConnectionState}",Color.cyan, this);
             if (connectionState.ConnectionState == LocalConnectionState.Started)
             {
+                
                 var list = InstanceFinder.ClientManager.Connection.Objects;
              
-            Log.Info($"Client: objects count = {list.Count}",Color.cyan, this);
+                Log.Info($"Client: objects count = {list.Count}",Color.cyan, this);
                 foreach ( NetworkObject obj in list)
                 {
                     
                     Log.Info($"Client: find object {obj.name} ",Color.cyan, this);
-                        IGameListener[] listeners = obj.GetComponentsInChildren<IGameListener>(true);
-
+                    IGameListener[] listeners = obj.GetComponentsInChildren<IGameListener>(true);
+    
                     foreach (IGameListener gameListener in listeners)
                     {
                         _gameEventDispatcher.AddListener(gameListener);
                     }
                     
-                }
-            }
+                }#1#
             
         }
+        */
 
         private void OnNetworkObjectSpawned(NetworkObject obj)
         {
@@ -70,8 +88,8 @@ namespace Core.GameLoop
             {
                 _gameEventDispatcher.AddListener(gameListener);
             }
-            
-            Log.Info($"[TRACKER] Заспавнен объект: {obj.name} {listeners.Length}",Color.cyan, this);
+
+            Log.Info($"[TRACKER] Заспавнен объект: {obj.name} {listeners.Length}", Color.cyan, this);
         }
 
         private void OnNetworkObjectDespawned(NetworkObject obj)
@@ -82,8 +100,8 @@ namespace Core.GameLoop
             {
                 _gameEventDispatcher.RemoveListener(gameListener);
             }
-            
-            Log.Info($"[TRACKER] Удален объект: {obj.name} ",Color.cyan, this);
+
+            Log.Info($"[TRACKER] Удален объект: {obj.name} ", Color.cyan, this);
         }
     }
 }

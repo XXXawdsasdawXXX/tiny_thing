@@ -2,6 +2,8 @@
 using FishNet.Managing;
 using FishNet.Object;
 using System;
+using Core.ServiceLocator;
+using Essential;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -11,7 +13,7 @@ namespace FishNet.Component.Spawning
     /// Spawns a player object for clients when they connect.
     /// </summary>
     [AddComponentMenu("FishNet/Component/PlayerSpawner")]
-    public class PlayerSpawner : MonoBehaviour
+    public class PlayerSpawner : Essential.Mono, IService
     {
         #region Public.
         /// <summary>
@@ -110,6 +112,8 @@ namespace FishNet.Component.Spawning
             //If there are no global scenes 
             if (_addToDefaultScene)
                 _networkManager.SceneManager.AddOwnerToDefaultScene(nob);
+            
+            Log.Info("Player Spawner spawn ",Color.yellow, this);
 
             OnSpawned?.Invoke(nob);
         }
