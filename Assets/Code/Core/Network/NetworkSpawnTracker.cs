@@ -26,7 +26,7 @@ namespace Core.GameLoop
         {
             InstanceFinder.NetworkManager.ServerManager.OnSpawn += OnNetworkObjectSpawned;
             InstanceFinder.NetworkManager.ServerManager.OnDespawn += OnNetworkObjectDespawned;
-            _playerSpawner.OnSpawned += OnNetworkObjectDespawned;
+            _playerSpawner.OnSpawned += OnNetworkObjectSpawned;
 
             //   InstanceFinder.ClientManager.OnClientConnectionState += OnClientConnectionState;
 
@@ -38,7 +38,7 @@ namespace Core.GameLoop
         {
             InstanceFinder.NetworkManager.ServerManager.OnSpawn -= OnNetworkObjectSpawned;
             InstanceFinder.NetworkManager.ServerManager.OnDespawn -= OnNetworkObjectDespawned;
-            _playerSpawner.OnSpawned -= OnNetworkObjectDespawned;
+            _playerSpawner.OnSpawned -= OnNetworkObjectSpawned;
 
         }
 
