@@ -16,6 +16,8 @@ namespace UI
         {
             _uiText.SetText(_personName.Name);
             
+            Log.Info($"game start set name {_personName.Name}");
+            
             _personName.Changed += SetName;
             
             return UniTask.CompletedTask;

@@ -1,8 +1,10 @@
-﻿using Core.ServiceLocator;
+﻿using System.Collections.Generic;
+using Core.ServiceLocator;
 using Cysharp.Threading.Tasks;
 using Essential;
 using FishNet;
 using FishNet.Object;
+using FishNet.Transporting;
 using UnityEngine;
 
 namespace Core.GameLoop
@@ -22,7 +24,8 @@ namespace Core.GameLoop
         {
             InstanceFinder.NetworkManager.ServerManager.OnSpawn += OnNetworkObjectSpawned;
             InstanceFinder.NetworkManager.ServerManager.OnDespawn += OnNetworkObjectDespawned;
-            
+            InstanceFinder.ClientManager.OnClientConnectionState += OnClientConnectionState;
+
             return UniTask.CompletedTask;
         }
 
@@ -30,8 +33,27 @@ namespace Core.GameLoop
         {
             InstanceFinder.NetworkManager.ServerManager.OnSpawn -= OnNetworkObjectSpawned;
             InstanceFinder.NetworkManager.ServerManager.OnDespawn -= OnNetworkObjectDespawned;
+            InstanceFinder.ClientManager.OnClientConnectionState -= OnClientConnectionState;
         }
-        
+
+        private void OnClientConnectionState(ClientConnectionStateArgs connectionState)
+        {
+            if (connectionState.ConnectionState == LocalConnectionState.Started)
+            {
+                foreach (KeyValuePair<ulong, NetworkObject> obj in InstanceFinder.ClientManager.Objects.SceneObjects)
+                {
+                    IGameListener[] listeners = obj.Value.GetComponentsInChildren<IGameListener>(true);
+
+                    foreach (IGameListener gameListener in listeners)
+                    {
+                        _gameEventDispatcher.AddListener(gameListener);
+                    }
+                    
+                    Debug.Log($"[TRACKER] Объект найден: {obj.Value.name}");
+                }
+            }
+        }
+
         private void OnNetworkObjectSpawned(NetworkObject obj)
         {
             IGameListener[] listeners = obj.GetComponentsInChildren<IGameListener>(true);
