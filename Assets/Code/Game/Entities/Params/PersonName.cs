@@ -46,10 +46,9 @@ namespace Game.Entities.Params
 
         private void OnNameChanged(string prev, string next, bool asserver)
         {
-            if (IsOwner)
-            {
+         
                 Changed?.Invoke(next);
-            }
+            
         }
     }
 }
