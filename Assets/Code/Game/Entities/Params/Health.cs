@@ -3,7 +3,7 @@ using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using UnityEngine;
 
-namespace Game.Entities
+namespace Game.Entities.Params
 {
     public class Health : NetworkBehaviour
     {

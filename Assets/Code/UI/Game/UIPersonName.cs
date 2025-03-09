@@ -5,7 +5,7 @@ using Game.Entities.Params;
 using UI.Components;
 using UnityEngine;
 
-namespace UI
+namespace UI.Game
 {
     public class UIPersonName : Essential.Mono, IStartListener ,ISubscriber
     {

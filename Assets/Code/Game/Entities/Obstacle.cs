@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Game.Entities.Params;
+using UnityEngine;
 
 namespace Game.Entities
 {

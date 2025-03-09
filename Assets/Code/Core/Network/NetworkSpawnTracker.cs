@@ -1,13 +1,13 @@
-﻿using Core.ServiceLocator;
+﻿using Core.GameLoop;
+using Core.ServiceLocator;
 using Cysharp.Threading.Tasks;
 using Essential;
 using FishNet;
-using FishNet.Component.Spawning;
 using FishNet.Connection;
 using FishNet.Object;
 using UnityEngine;
 
-namespace Core.GameLoop
+namespace Core.Network
 {
     public class NetworkSpawnTracker : IService, IInitializeListener, ISubscriber
     {

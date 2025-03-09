@@ -1,13 +1,13 @@
-﻿using FishNet.Connection;
-using FishNet.Managing;
-using FishNet.Object;
-using System;
+﻿using System;
 using Core.ServiceLocator;
 using Essential;
+using FishNet;
+using FishNet.Connection;
+using FishNet.Managing;
+using FishNet.Object;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace FishNet.Component.Spawning
+namespace Core.Network
 {
     /// <summary>
     /// Spawns a player object for clients when they connect.

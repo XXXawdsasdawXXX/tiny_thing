@@ -1,7 +1,7 @@
 ﻿using Game.InteractionObjects;
 using UnityEngine;
 
-namespace UI
+namespace UI.Game
 {
     public class UIInteractionIcon : MonoBehaviour
     {
