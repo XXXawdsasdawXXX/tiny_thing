@@ -5,7 +5,16 @@ namespace Essential
 {
     public class Mono : MonoBehaviour
     {
+        public static event Action<Mono> Started;
+        public static event Action<Mono> Destroyed;
+
         [field: SerializeField] public UniqueID ID;
+
+
+        private void Start()
+        {
+            Started?.Invoke(this);
+        }
 
         protected virtual void OnEnable()
         {
@@ -13,6 +22,11 @@ namespace Essential
             {
                 ID.Validate();
             }
+        }
+
+        private void OnDestroy()
+        {
+            Destroyed?.Invoke(this);
         }
 
         protected virtual void OnValidate()

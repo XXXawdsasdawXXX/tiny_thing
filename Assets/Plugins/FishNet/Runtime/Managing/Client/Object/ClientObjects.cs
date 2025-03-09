@@ -17,6 +17,7 @@ using GameKit.Dependencies.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Essential;
 using FishNet.Serializing.Helping;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -162,6 +163,7 @@ namespace FishNet.Managing.Client
                 NetworkManager.StorePooledInstantiated(networkObject, false);
             }
 
+            Log.Info("client spawn", this);
             writer.Store();
         }
 
@@ -175,6 +177,8 @@ namespace FishNet.Managing.Client
             base.NetworkManager.TransportManager.SendToServer((byte)Channel.Reliable, writer.GetArraySegment());
             writer.Store();
 
+            Log.Info("client despawn", this);
+            
             base.Despawn(networkObject, networkObject.GetDefaultDespawnType(), asServer: false);
         }
 
